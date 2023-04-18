@@ -91,4 +91,9 @@ def scrape_twitter():
 
 # Define function to rank projects
 def rank_projects(project_data, twitter_data):
-    # Project_data is a list of dictionaries containing information about each
+    # Project_data is a list of dictionaries containing information about each project
+    
+    # Scrape Twitter for trending narratives
+    trending_narratives = scrape_twitter()
+
+    # Initialize
