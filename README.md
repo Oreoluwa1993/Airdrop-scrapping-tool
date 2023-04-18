@@ -97,3 +97,29 @@ def rank_projects(project_data, twitter_data):
     trending_narratives = scrape_twitter()
 
     # Initialize
+# Define function to rank projects
+def rank_projects(project_data, twitter_data):
+    # Project_data is a list of dictionaries containing information about each project
+    
+    # Scrape Twitter for trending narratives
+    trending_narratives = scrape_twitter()
+
+    # Initialize a list to store each project's score
+    project_scores = []
+
+    # Loop through each project and calculate its social score and tokenomics score
+    for project in project_data:
+        social_score = calculate_social_score(project)
+        tokenomics_score = calculate_tokenomics_score(project)
+        
+        # Calculate the overall score for the project
+        overall_score = (social_score * 0.6) + (tokenomics_score * 0.4)
+
+        # Add the overall score to the list of project scores
+        project_scores.append(overall_score)
+    
+    # Rank the projects based on their overall scores
+    ranked_projects = [x for _, x in sorted(zip(project_scores, project_data), reverse=True)]
+    
+    # Return the ranked projects
+    return ranked_projects
